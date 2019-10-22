@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "586178667129",
+    "firebase_url": "https://proyecto-moviles-2.firebaseio.com",
+    "project_id": "proyecto-moviles-2",
+    "storage_bucket": "proyecto-moviles-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586178667129:android:4fa81306c5da67c7d56aa8",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586178667129-fid46ivj78b922tf47acfvg3e1pcu3m0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "d4e9c2ee2c1fc68b83a452265e580f8f18e6b1cb"
+          }
+        },
+        {
+          "client_id": "586178667129-ij7rbaukt0nv7uj1b5iata5e9h93nsih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd5RHgmQhcWl676npN9mrjlUKs37LugiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586178667129-ij7rbaukt0nv7uj1b5iata5e9h93nsih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
