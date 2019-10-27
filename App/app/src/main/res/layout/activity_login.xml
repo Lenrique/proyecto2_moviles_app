@@ -19,11 +19,19 @@
         android:hint="Password"
         android:layout_below="@+id/emailEditText"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_below="@+id/passwordEditText"
+        android:onClick="forgottenPassword"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/signButton"
-        android:layout_below="@+id/passwordEditText"
+        android:layout_below="@+id/forgotPasswordTextView"
         android:text="Sign In"
         android:onClick="login"/>
 

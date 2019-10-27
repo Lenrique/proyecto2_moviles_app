@@ -96,6 +96,12 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void forgottenPassword(View v){
+        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+        intent.putExtra("forgotPassword", "true");
+        startActivity(intent);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

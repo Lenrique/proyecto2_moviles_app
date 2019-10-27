@@ -37,6 +37,7 @@ public class FirebaseUserHelper {
         void LoginSuccess(FirebaseUser user);
         void LoginError(String message);
     }
+
     public interface UserReset{
         void ResetSuccess();
         void ResetError();
