@@ -1,7 +1,6 @@
-package com.example.myapplication;
+package com.example.myapplication.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 
 
 import com.example.myapplication.FirebaseHelpers.FirebaseUserHelper;
+import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
