@@ -14,15 +14,53 @@
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/emailEditText"
-        android:hint="User"/>
+        android:id="@+id/nameEditText"
+        android:hint="Name"/>
 
     <EditText
+        android:layout_below="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/lastNameEditText"
+        android:hint="Last Name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lastNameEditText"
+        android:id="@+id/bornDateTextView"
+        android:text="Born Date"/>
+
+    <EditText
+        android:id="@+id/phoneEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bornDateTextView"
+        android:hint="Phone"
+        android:phoneNumber="true" />
+
+    <EditText
+        android:layout_below="@+id/phoneEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityEditText"
+        android:hint="City"/>
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cityEditText"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
         android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailEditText"
         android:hint="Password"
-        android:layout_below="@+id/emailEditText"/>
+        android:password="true" />
 
     <Button
         android:layout_width="match_parent"
