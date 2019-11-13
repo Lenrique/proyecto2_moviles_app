@@ -16,7 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.myapplication.Activities.MainActivity;
 import com.example.myapplication.Activities.NewPublicationActivity;
 import com.example.myapplication.Adapters.PostsRecyclerViewConfig;
 import com.example.myapplication.DAO.DAOPost;
@@ -53,7 +55,7 @@ public class TimeLineFragment extends Fragment {
     }
 
     private void publicar(){
-        Log.e("TIMELINE","PUBLICANDOP");
+
         Intent intent = new Intent(getContext(), NewPublicationActivity.class);
         intent.putExtra("userEmail",userEmail);
         startActivity(intent);
@@ -83,6 +85,7 @@ public class TimeLineFragment extends Fragment {
         });
 
     }
+
 
     @Override
     public void onResume() {

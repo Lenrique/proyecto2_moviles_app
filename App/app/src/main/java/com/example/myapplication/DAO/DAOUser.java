@@ -14,6 +14,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class DAOUser {
 
@@ -32,8 +33,13 @@ public class DAOUser {
         return single_reference;
     }
 
-    public void update(DTOUser user){
+    public interface UserReturn{
+        void onSuccess(Task<QuerySnapshot> task );
+    }
 
+    public void updatePhoto(String userEmail, String image){
+        DocumentReference userRef = firestore.collection("users").document(userEmail);
+        userRef.update("userInfo.profilePhoto",image);
     }
 
     public void addUser(final DTOUser DTOUser, final UserStatus userStatus) {
@@ -62,6 +68,24 @@ public class DAOUser {
 
             }
         });
+    }
+
+    public void getAllUsers(final UserReturn userReturn){
+        firestore.collection("users").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            userReturn.onSuccess(task);
+                            /*
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }*/
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     public void getUser(String userEmail, final UserStatus userStatus){

@@ -109,7 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void LoginSuccess(FirebaseUser user) {
 
-                    DTOUser newDTOUser = new DTOUser();
+                    final DTOUser newDTOUser = new DTOUser();
                     DTOUserInfo newDTOUserInfo = new DTOUserInfo();
                     newDTOUserInfo.name = name;
                     newDTOUserInfo.lastName = lastName;
@@ -123,6 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void DataInserted() {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("userEmail", newDTOUser.userInfo.email);
                             startActivity(intent);
 
                         }

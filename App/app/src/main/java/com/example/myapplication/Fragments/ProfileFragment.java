@@ -1,7 +1,9 @@
 package com.example.myapplication.Fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -49,14 +51,8 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         userEmail = getArguments().getString("userEmail");
-
+        update();
         return inflater.inflate(R.layout.fragment_profile, container, false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
     }
 
     @Override
@@ -65,6 +61,23 @@ public class ProfileFragment extends Fragment {
         userNameTextView = view.findViewById(R.id.userNameTextView);
         profile_image = view.findViewById(R.id.profile_image);
         userPostsRecylerView = view.findViewById(R.id.userPostsRecylerView);
+        update();
+
+    }
+    public void setImage(String url){
+        Picasso.get().load(url).into(profile_image);
+    }
+
+    public void update(){
+        try {
+            Context context = getActivity();
+            SharedPreferences sharedPref = context.getSharedPreferences("UsuarioActual", Context.MODE_PRIVATE);
+
+            Toast.makeText(getContext(), sharedPref.getString("userEmail",""), Toast.LENGTH_LONG).show();
+        }catch (Exception e){
+            Toast.makeText(getContext(), "error", Toast.LENGTH_LONG).show();
+        }
+
         DAOUser.getInstance().getUser(userEmail, new DAOUser.UserStatus() {
             @Override
             public void onSuccess(DTOUser user) {
@@ -98,7 +111,20 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-    public void setImage(String url){
-        Picasso.get().load(url).into(profile_image);
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        update();
+        Toast.makeText(getContext(), "errorResume", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        update();
+        Toast.makeText(getContext(), "errorStart", Toast.LENGTH_LONG).show();
     }
 }

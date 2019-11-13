@@ -67,7 +67,7 @@ public class NewPublicationActivity extends AppCompatActivity {
         DAOUser.getInstance().getUser(userEmail, new DAOUser.UserStatus() {
             @Override
             public void onSuccess(DTOUser user) {
-                asignPhoto(user.userInfo.profilePhoto.toString());
+                asignPhoto(user.userInfo.profilePhoto);
             }
 
             @Override
@@ -75,8 +75,6 @@ public class NewPublicationActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
         if(image != null && tipo.equals("image")){
