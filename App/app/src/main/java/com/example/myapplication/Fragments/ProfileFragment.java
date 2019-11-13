@@ -18,22 +18,30 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {}
 
+    String user;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Intent intent = new Intent();
-        String user = intent.getStringExtra("user");
+        user = intent.getStringExtra("user");
         if(user != null){
             Toast.makeText(getContext(),"Hay Usuario", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(getContext(),"No Usuario", Toast.LENGTH_LONG).show();
         }
-
-
-
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(user != null){
+            Toast.makeText(getContext(),"Hay Usuario", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getContext(),"No Usuario", Toast.LENGTH_LONG).show();
+        }
+    }
 }

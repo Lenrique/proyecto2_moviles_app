@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.FirebaseHelpers.FirebaseUserHelper;
+import com.example.myapplication.DAO.DAOAuthentication;
 import com.example.myapplication.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -65,11 +65,12 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            FirebaseUserHelper.getInstance(this).authWithEmail(email, password, new FirebaseUserHelper.UserStatus() {
+            DAOAuthentication.getInstance(this).authWithEmail(email, password, new DAOAuthentication.UserStatus() {
                 @Override
                 public void LoginSuccess(FirebaseUser user) {
                     Log.d(TAG, "authWithCredential:success");
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("userEmail", user.getEmail());
                     startActivity(intent);
                 }
 
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                FirebaseUserHelper.getInstance(this).authWithGoogle(account, new FirebaseUserHelper.UserStatus() {
+                DAOAuthentication.getInstance(this).authWithGoogle(account, new DAOAuthentication.UserStatus() {
                     @Override
                     public void LoginSuccess(FirebaseUser user) {
                         Log.d(TAG, "signInWithCredential:success");

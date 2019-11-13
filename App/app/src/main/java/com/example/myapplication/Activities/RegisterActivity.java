@@ -17,17 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.myapplication.FirebaseHelpers.FirebaseDatabaseHelper;
-import com.example.myapplication.FirebaseHelpers.FirebaseUserHelper;
-import com.example.myapplication.Models.User;
-import com.example.myapplication.Models.UserInfo;
+import com.example.myapplication.DTO.DTOUser;
+import com.example.myapplication.DAO.DAODatabase;
+import com.example.myapplication.DAO.DAOAuthentication;
+import com.example.myapplication.DTO.DTOUserInfo;
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -56,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 emailEditText.setError("Required.");
                 return;
             }
-            FirebaseUserHelper.getInstance(this).resetPassword(email, new FirebaseUserHelper.UserReset() {
+            DAOAuthentication.getInstance(this).resetPassword(email, new DAOAuthentication.UserReset() {
                 @Override
                 public void ResetSuccess() {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -108,25 +105,35 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            FirebaseUserHelper.getInstance(this).createAccount(email, password, new FirebaseUserHelper.UserStatus() {
+            DAOAuthentication.getInstance(this).createAccount(email, password, new DAOAuthentication.UserStatus() {
                 @Override
                 public void LoginSuccess(FirebaseUser user) {
 
-                    User newUser = new User();
-                    UserInfo newUserInfo = new UserInfo();
-                    newUserInfo.name = name;
-                    newUserInfo.lastName = lastName;
-                    newUserInfo.bornDate = bornDateTextView.getText().toString();
-                    newUserInfo.phone = phone;
-                    newUserInfo.city = city;
-                    newUserInfo.email = email;
-                    newUser.userInfo = newUserInfo;
+                    DTOUser newDTOUser = new DTOUser();
+                    DTOUserInfo newDTOUserInfo = new DTOUserInfo();
+                    newDTOUserInfo.name = name;
+                    newDTOUserInfo.lastName = lastName;
+                    newDTOUserInfo.bornDate = bornDateTextView.getText().toString();
+                    newDTOUserInfo.phone = phone;
+                    newDTOUserInfo.city = city;
+                    newDTOUserInfo.email = email;
+                    newDTOUser.DTOUserInfo = newDTOUserInfo;
 
-                    FirebaseDatabaseHelper.getInstance().addUser(newUser, new FirebaseDatabaseHelper.DataStatus() {
+                    DAODatabase.getInstance().addUser(newDTOUser, new DAODatabase.DataStatus() {
                         @Override
                         public void DataInserted() {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
+                        }
+
+                        @Override
+                        public void DataFailure() {
+                            Toast.makeText(getApplicationContext(), "ERROR Para insertar", Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void DataUser(DTOUser DTOUser) {
+
                         }
                     });
                 }

@@ -1,27 +1,21 @@
 package com.example.myapplication.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapters.PageAdapter;
-import com.example.myapplication.FirebaseHelpers.FirebaseUserHelper;
 import com.example.myapplication.R;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
+    Bundle bundle = new Bundle();
     TabLayout tabLayout;
     ViewPager viewPager;
     PageAdapter pageAdapter;
@@ -31,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bundle.putString("userEmail", getIntent().getStringExtra("userEmail"));
         initComponents();
         initListeners();
+
 
     }
 
@@ -43,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         profileTab = findViewById(R.id.profileTab);
         viewPager = findViewById(R.id.viewPager);
 
-        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(pageAdapter);
     }
     private void initListeners(){
