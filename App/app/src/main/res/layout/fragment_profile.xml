@@ -20,8 +20,7 @@
         android:layout_marginTop="140dp"
         android:src="@drawable/ic_launcher_foreground"
         app:civ_border_width="1dp"
-        app:civ_border_color="#FF000000"
-        android:onClick="uploadPhoto"/>
+        app:civ_border_color="#FF000000"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,6 +80,12 @@
         android:id="@+id/userPostTextView"
         android:text="User Posts"
         android:layout_below="@+id/buttonsLinearLayout"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userPostsRecylerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/userPostTextView"/>
 
 
 

@@ -18,7 +18,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.myapplication.Activities.NewPublicationActivity;
+import com.example.myapplication.Adapters.PostsRecyclerViewConfig;
+import com.example.myapplication.DAO.DAOPost;
+import com.example.myapplication.DTO.DTOPost;
 import com.example.myapplication.R;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +71,31 @@ public class TimeLineFragment extends Fragment {
         });
         postRecyclerView = view.findViewById(R.id.postRecyclerView);
 
+        DAOPost.getInstance().getAllPost(new DAOPost.PostReturn() {
+            @Override
+            public void onSuccess(Task<QuerySnapshot> task) {
+                List<DTOPost> posts = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    posts.add(document.toObject(DTOPost.class));
+                }
+                new PostsRecyclerViewConfig().setConfig(postRecyclerView,getContext(), posts);
+            }
+        });
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DAOPost.getInstance().getAllPost(new DAOPost.PostReturn() {
+            @Override
+            public void onSuccess(Task<QuerySnapshot> task) {
+                List<DTOPost> posts = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    posts.add(document.toObject(DTOPost.class));
+                }
+                new PostsRecyclerViewConfig().setConfig(postRecyclerView,getContext(), posts);
+            }
+        });
     }
 }

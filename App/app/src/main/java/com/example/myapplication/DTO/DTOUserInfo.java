@@ -8,7 +8,7 @@ public class DTOUserInfo {
 
     public String name;
     public String lastName;
-    public Uri profilePhoto;
+    public String profilePhoto;
     public String bornDate;
     public String phone;
     public String city;
@@ -25,7 +25,7 @@ public class DTOUserInfo {
         return lastName;
     }
 
-    public Uri getProfilePhoto() {
+    public String getProfilePhoto() {
         return profilePhoto;
     }
 

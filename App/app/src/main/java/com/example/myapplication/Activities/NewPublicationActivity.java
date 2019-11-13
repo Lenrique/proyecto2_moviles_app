@@ -19,6 +19,7 @@ import com.example.myapplication.DAO.DAOImage;
 import com.example.myapplication.DAO.DAOPost;
 import com.example.myapplication.DAO.DAOUser;
 import com.example.myapplication.DTO.DTOPost;
+import com.example.myapplication.DTO.DTOUser;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -37,7 +38,7 @@ public class NewPublicationActivity extends AppCompatActivity {
     private EditText descriptionEditText, videoEditText;
     private Button imageVideo, imageButton, publicarButton;
     private Uri image;
-    private String tipo;
+    private String tipo, profilePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,22 @@ public class NewPublicationActivity extends AppCompatActivity {
             return;
         }
 
+
+        DAOUser.getInstance().getUser(userEmail, new DAOUser.UserStatus() {
+            @Override
+            public void onSuccess(DTOUser user) {
+                asignPhoto(user.userInfo.profilePhoto.toString());
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+
+
+
+
         if(image != null && tipo.equals("image")){
             DAOImage daoImage = new DAOImage();
             daoImage.insertImage(image, getFileExtention(image), new DAOImage.ImageStatus() {
@@ -72,6 +89,7 @@ public class NewPublicationActivity extends AppCompatActivity {
                     post.image = image;
                     post.userEmail = userEmail;
                     post.description = descripcion;
+
 
                     DAOPost.getInstance().addPost(post, new DAOPost.PostStatus() {
                         @Override
@@ -116,10 +134,31 @@ public class NewPublicationActivity extends AppCompatActivity {
                     }
                 });
             }
+        }else{
+            DTOPost post = new DTOPost();
+            post.date = Calendar.getInstance().getTime();
+            post.userEmail = userEmail;
+            post.description = descripcion;
+
+            DAOPost.getInstance().addPost(post, new DAOPost.PostStatus() {
+                @Override
+                public void onSuccess(DTOPost post) {
+                    Log.e(TAG, userEmail);
+                    DAOUser.getInstance().addPost(userEmail,post.getPostId());
+                    Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onFailure() {
+
+                }
+            });
         }
 
     }
-
+    public void asignPhoto(String photo){
+        profilePhoto = photo;
+    }
     public void back(){
         this.onBackPressed();
     }
