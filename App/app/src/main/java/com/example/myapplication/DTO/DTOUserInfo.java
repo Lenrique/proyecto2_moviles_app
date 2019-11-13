@@ -13,7 +13,7 @@ public class DTOUserInfo {
     public String phone;
     public String city;
     public String email;
-    public List<DTOEducation> DTOEducation;
+    public List<DTOEducation> education;
 
     public DTOUserInfo(){}
 
@@ -46,6 +46,6 @@ public class DTOUserInfo {
     }
 
     public List<DTOEducation> getDTOEducation() {
-        return DTOEducation;
+        return education;
     }
 }

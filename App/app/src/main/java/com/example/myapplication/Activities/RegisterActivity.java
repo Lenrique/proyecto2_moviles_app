@@ -117,13 +117,14 @@ public class RegisterActivity extends AppCompatActivity {
                     newDTOUserInfo.phone = phone;
                     newDTOUserInfo.city = city;
                     newDTOUserInfo.email = email;
-                    newDTOUser.DTOUserInfo = newDTOUserInfo;
+                    newDTOUser.userInfo = newDTOUserInfo;
 
                     DAODatabase.getInstance().addUser(newDTOUser, new DAODatabase.DataStatus() {
                         @Override
                         public void DataInserted() {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
+
                         }
 
                         @Override

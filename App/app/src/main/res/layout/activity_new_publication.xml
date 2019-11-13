@@ -14,25 +14,32 @@
 
 
     <EditText
-        android:id="@+id/descripcionEditText"
-        android:layout_below="@+id/text"
+        android:id="@+id/descriptionEditText"
+        android:layout_below="@+id/videoEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Inserte una descripcion"/>
+
+    <EditText
+        android:id="@+id/videoEditText"
+        android:layout_below="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Inserte link del video"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/descripcionEditText"/>
+        android:layout_below="@+id/descriptionEditText"/>
 
     <Button
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Imagen"
-        android:layout_below="@+id/image"
-        android:onClick="openFileChooser"/>
+        android:layout_below="@+id/image"/>
 
     <Button
         android:id="@+id/imageVideo"
@@ -48,7 +55,6 @@
         android:layout_height="wrap_content"
         android:text="Publicar"
         android:layout_toEndOf="@+id/imageVideo"
-        android:layout_below="@id/image"
-        android:onClick="publicar"/>
+        android:layout_below="@id/image"/>
 
 </RelativeLayout>

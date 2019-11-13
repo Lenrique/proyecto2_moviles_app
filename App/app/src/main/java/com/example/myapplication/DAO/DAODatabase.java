@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.myapplication.DTO.DTOPost;
 import com.example.myapplication.DTO.DTOUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -12,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DAODatabase {
@@ -38,11 +40,15 @@ public class DAODatabase {
         return single_instace;
     }
 
+
+
+
+
     public void addUser(final DTOUser DTOUser, final DataStatus dataStatus) {
-        this.getUser(DTOUser.DTOUserInfo.email, new DataStatus() {
+        this.getUser(DTOUser.userInfo.email, new DataStatus() {
             @Override
             public void DataFailure() {
-                firestore.collection("users").document(DTOUser.DTOUserInfo.email).set(DTOUser)
+                firestore.collection("users").document(DTOUser.userInfo.email).set(DTOUser)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

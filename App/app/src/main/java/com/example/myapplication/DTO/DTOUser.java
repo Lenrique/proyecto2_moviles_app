@@ -6,23 +6,23 @@ import java.util.List;
 
 public class DTOUser {
 
-    public DTOUserInfo DTOUserInfo;
-    public List<DTOEducation> DTOEducationList;
+    public DTOUserInfo userInfo;
+    public List<DTOEducation> education;
     public List<Uri> photos;
     public List<String> friends;
     public List<String> request;
-    public List<DTOPost> DTOPosts;
+    public List<String> posts;
 
     public DTOUser(){}
 
 
 //#region Getters
-    public DTOUserInfo getDTOUserInfo() {
-        return DTOUserInfo;
+    public DTOUserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public List<DTOEducation> getDTOEducationList() {
-        return DTOEducationList;
+    public List<DTOEducation> getEducation() {
+        return education;
     }
 
     public List<Uri> getPhotos() {
@@ -37,8 +37,8 @@ public class DTOUser {
         return request;
     }
 
-    public List<DTOPost> getDTOPosts() {
-        return DTOPosts;
+    public List<String> getPosts() {
+        return posts;
     }
 //#endregion
 }

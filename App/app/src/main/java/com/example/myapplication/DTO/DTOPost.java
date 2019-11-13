@@ -8,23 +8,25 @@ import java.util.List;
 
 public class DTOPost {
 
-    private List<String> likes;
-    private List<DTOComment> DTOComments;
+    public List<String> likes;
+    public List<DTOComment> comments;
     public Date date;
     public String postId;
-    public Uri image;
+    public String image;
     public String videoUrl;
     public String userEmail;
+    public String description;
 
     public DTOPost(){}
+
+    public void getDescription (String description){this.description = description;}
+
     public DTOPost(String email){
-        likes = new ArrayList<>();
-        DTOComments = new ArrayList<>();
         userEmail = email;
     }
 
-    public void addComment(DTOComment DTOComment){
-        DTOComments.add(DTOComment);
+    public void addComment(DTOComment comment){
+        comments.add(comment);
     }
 
     public void addLike(String userId){
@@ -39,8 +41,8 @@ public class DTOPost {
         return likes;
     }
 
-    public List<DTOComment> getDTOComments() {
-        return DTOComments;
+    public List<DTOComment> getComments() {
+        return comments;
     }
 
     public Date getDate() {
@@ -51,7 +53,7 @@ public class DTOPost {
         return postId;
     }
 
-    public Uri getImage() {
+    public String getImage() {
         return image;
     }
 

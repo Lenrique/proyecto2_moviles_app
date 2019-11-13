@@ -16,7 +16,7 @@ public class DAOImage {
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
     public interface ImageStatus{
-        void onSuccess(Uri image);
+        void onSuccess(String image);
         void onFailure();
     }
 
@@ -26,7 +26,12 @@ public class DAOImage {
         fileReference.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                imageStatus.onSuccess(taskSnapshot.getUploadSessionUri());
+                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        imageStatus.onSuccess(uri.toString());
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

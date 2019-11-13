@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class TimeLineFragment extends Fragment {
 
     private String userEmail;
     private Button  publicarButton;
+    private RecyclerView postRecyclerView;
     public TimeLineFragment() {
         // Required empty public constructor
     }
@@ -58,5 +60,7 @@ public class TimeLineFragment extends Fragment {
                 TimeLineFragment.this.publicar();
             }
         });
+        postRecyclerView = view.findViewById(R.id.postRecyclerView);
+
     }
 }
