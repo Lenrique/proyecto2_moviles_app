@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView userNameTextView;
     private RecyclerView userPostsRecylerView;
     private CircleImageView profile_image;
+    private Button logOutButton;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri image;
 
@@ -49,6 +51,14 @@ public class ProfileActivity extends AppCompatActivity {
         userNameTextView = findViewById(R.id.userNameTextView);
         profile_image = findViewById(R.id.profile_image);
         userPostsRecylerView = findViewById(R.id.userPostsRecylerView);
+        logOutButton = findViewById(R.id.logOutButton);
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
                     openFileChooser();
             }
         });
+
         update();
     }
 

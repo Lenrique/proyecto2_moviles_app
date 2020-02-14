@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "Login Activity";
     EditText emailEditText, passwordEditText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +47,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
 
+    }
 
     public void login(View v) {
         int i = v.getId();
@@ -71,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(TAG, "authWithCredential:success");
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("userEmail", user.getEmail());
+                    Toast.makeText(getApplicationContext(),user.getEmail(), Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }
 
@@ -109,7 +112,14 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, "signInWithCredential:success");
                         Log.d(TAG, "authWithCredential:success");
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("userEmail", user.getEmail());
+                        Toast.makeText(getApplicationContext(),user.getEmail(), Toast.LENGTH_LONG).show();
                         startActivity(intent);
+
+
+
+
+
                     }
 
                     @Override

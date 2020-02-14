@@ -13,8 +13,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.myapplication.Activities.LoginActivity;
 import com.example.myapplication.Activities.MainActivity;
 import com.example.myapplication.Activities.ProfileActivity;
 import com.example.myapplication.DAO.DAOUser;
@@ -50,6 +53,7 @@ public class PostsRecyclerViewConfig {
         private TextView postUserNameTextView, postDateTextView, postDescriptionTextView;
         private ImageView postImage;
         private WebView postVideo;
+        private Button like;
 
 
 
@@ -60,14 +64,24 @@ public class PostsRecyclerViewConfig {
             postDateTextView = itemView.findViewById(R.id.postDateTextView);
             postDescriptionTextView = itemView.findViewById(R.id.postDescriptionTextView);
             postImage = itemView.findViewById(R.id.postImage);
+            like = itemView.findViewById(R.id.likeButton);
+
+
 
 
 
         }
-        public void bind(DTOPost post){
+        public void bind(final DTOPost post){
             postUserNameTextView.setText(post.userEmail);
             postDateTextView.setText(post.date.toString());
             postDescriptionTextView.setText(post.description);
+
+            like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, post.userEmail, Toast.LENGTH_LONG).show();
+                }
+            });
 
 
 

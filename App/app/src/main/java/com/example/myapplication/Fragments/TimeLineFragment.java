@@ -77,9 +77,11 @@ public class TimeLineFragment extends Fragment {
             @Override
             public void onSuccess(Task<QuerySnapshot> task) {
                 List<DTOPost> posts = new ArrayList<>();
+
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     posts.add(document.toObject(DTOPost.class));
                 }
+
                 new PostsRecyclerViewConfig().setConfig(postRecyclerView,getContext(), posts);
             }
         });

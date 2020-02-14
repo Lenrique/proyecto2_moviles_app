@@ -100,7 +100,7 @@ public class SearchFragment extends Fragment {
                 DAOSearchResult searchResult;
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     DTOUser user = document.toObject(DTOUser.class);
-                    if((user.userInfo.name.contains(query) || user.userInfo.lastName.contains(query) )&& !user.userInfo.email.equals(userEmail))  {
+                    if(user.userInfo.name.contains(query) || user.userInfo.lastName.contains(query) )  {
                         searchResult = new DAOSearchResult();
                         searchResult.type = "User";
                         searchResult.userEmail = user.userInfo.email;
